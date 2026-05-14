@@ -15,10 +15,20 @@ class Categories(models.Model):
 
 
 class Product(models.Model):
-    
+    PRODUCT_WAITING = 'w'
+    PRODUCT_UNAVAILABLE = 'ua'
+    PRODUCT_AVAILABLE = 'a'
+
+    PRODUCT_STATUS = [
+        (PRODUCT_WAITING,'waiting'),
+        (PRODUCT_UNAVAILABLE,'unavailable'),
+        (PRODUCT_AVAILABLE,'available'),
+    ]
     # category
+
     name = models.CharField(max_length=50)
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    status = models.CharField(max_length=2, default=PRODUCT_WAITING, choices=PRODUCT_STATUS)
     slug = models.SlugField()
     description = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
