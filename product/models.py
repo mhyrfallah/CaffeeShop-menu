@@ -1,7 +1,7 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractBaseUser
 # Custom User
-class CustomUserModel(AbstractUser):
+class CustomUserModel(AbstractBaseUser):
     pass
 
 # Product model
