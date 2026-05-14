@@ -1,5 +1,8 @@
 from django.db import models
 
+# Custom User
+
+
 # Product model
 
 class Product(models.Model):
