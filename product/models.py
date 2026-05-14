@@ -18,6 +18,7 @@ class Product(models.Model):
 
     # category
     name = models.CharField(max_length=50)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
     slug = models.SlugField()
     description = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
