@@ -1,22 +1,27 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
+
+
 # Custom User
+
 class CustomUserModel(AbstractBaseUser):
     pass
 
-# Product model
+# category model
 
 class Categories(models.Model):
     name = models.CharField(max_length=20)
+    # image field + media_root folder
     slug = models.SlugField()
 
     def __str__(self):
         return self.name
 
+# Product model
 
 class Product(models.Model):
     PRODUCT_WAITING = 'w'
-    PRODUCT_UNAVAILABLE = 'ua'
+    PRODUCT_UNAVAILABLE = 'ua' # status of products
     PRODUCT_AVAILABLE = 'a'
 
     PRODUCT_STATUS = [
@@ -24,6 +29,7 @@ class Product(models.Model):
         (PRODUCT_UNAVAILABLE,'unavailable'),
         (PRODUCT_AVAILABLE,'available'),
     ]
+    
     # category
 
     name = models.CharField(max_length=50)

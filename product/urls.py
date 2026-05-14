@@ -1,3 +1,7 @@
 from django.urls import path, include
 
-urlpatterns = []
+from . import views
+
+urlpatterns = [
+    path('', views.product_menu, name='product_list')
+]
