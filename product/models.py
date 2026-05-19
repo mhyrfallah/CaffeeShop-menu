@@ -11,7 +11,7 @@ class CustomUserModel(AbstractBaseUser):
 
 class Categories(models.Model):
     name = models.CharField(max_length=20)
-    image = models.ImageField(upload_to='category/')
+    image = models.ImageField(upload_to='category/', null=True, blank=True)
     slug = models.SlugField()
 
     def __str__(self):
