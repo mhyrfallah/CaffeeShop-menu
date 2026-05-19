@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
 from .models import Product, Categories
-from rest_framework import api_view
+from rest_framework.decorators import api_view
 from .serializers import MenuItemSerializer
 from rest_framework.response import Response
 
