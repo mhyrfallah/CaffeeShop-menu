@@ -26,7 +26,11 @@ SECRET_KEY = 'django-insecure-mqp+h%nk1d+8nbe%3_p9lvl$rkrmfnt#58%trmti)+6%1w0f13
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '172.18.144.1',
+    'localhost',
+    '127.0.0.1',
+]
 
 
 # Application definition
@@ -79,17 +83,22 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': "postgres",
-        'USER': "postgres",
-        'PASSWORD': 'postgres',
-        'HOST': 'db',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': "mysql",
+        'USER': "root",
+        'PASSWORD': '#Mahyar1385',
+        'HOST': 'localhost',
         'PORT': 5432,
     }
 }
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+]
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
