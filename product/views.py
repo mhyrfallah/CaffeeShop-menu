@@ -1,29 +1,20 @@
-from django.shortcuts import render
-from django.views import generic
-from .models import Product, Categories
-from rest_framework.decorators import api_view
-from .serializers import CategorySerializer
+from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
+from rest_framework.views import APIView
+from django.shortcuts import get_object_or_404
+from .models import Category, Product
+from .serializers import CategorySerializer, ProductSerializer
 
 
-@api_view(['GET'])
-def category_list(request):
-    categories = Categories.objects.prefetch_related('products').all()
-    
-    serializer = CategorySerializer(categories, many=True)
-
-    return Response(serializer.data)
+class CategoryListView(ListAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
 
 
-# @api_view(['GET'])
-# def menu_list(request):
-#     items = Categories.objects.all()
-#     serializer = MenuItemSerializer(items, many=True)
-#     return Response(serializer.data)
-
-
-# def product_menu(request):
-#     model = Product
-#     context = {'product': Product.objects.all()}
-
-#     return render(request, 'product.html', context)
+class CategoryProductsView(APIView):
+    def get(self, request, slug):
+        category = get_object_or_404(Category, slug=slug)
+        products = category.products.filter(status=Product.PRODUCT_AVAILABLE)
+        serializer = ProductSerializer(products, many=True)
+        return Response(serializer.data)
+        
